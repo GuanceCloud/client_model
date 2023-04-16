@@ -37,6 +37,8 @@ enum MetricType {
   HISTOGRAM = 4;
   // GAUGE_HISTOGRAM must use the Metric field "histogram".
   GAUGE_HISTOGRAM = 5;
+  // INFO must use the Metric field "info".
+  INFO = 6;
 }
 
 message Gauge {
@@ -57,6 +59,11 @@ message Summary {
   optional uint64   sample_count = 1;
   optional double   sample_sum   = 2;
   repeated Quantile quantile     = 3;
+}
+
+message Info {
+  optional double   value    = 1;
+  optional Exemplar exemplar = 2;
 }
 
 message Untyped {
@@ -133,6 +140,7 @@ message Metric {
   optional Summary   summary      = 4;
   optional Untyped   untyped      = 5;
   optional Histogram histogram    = 7;
+  optional Info      info         = 8;
   optional int64     timestamp_ms = 6;
 }
 
